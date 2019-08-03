@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f209d610-332b-4c1f-86e7-afe905bb2150" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/parser.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +20,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="875">
-              <caret line="131" selection-start-line="131" selection-end-line="131" />
+            <state relative-caret-position="620">
+              <caret line="173" column="34" selection-start-line="173" selection-start-column="34" selection-end-line="173" selection-end-column="34" />
               <folding>
                 <element signature="e#1#35#0" expanded="true" />
               </folding>
@@ -51,15 +49,16 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="1603" />
-    <option name="y" value="-8" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1820" />
+    <option name="y" value="-16" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
+      <showMembers ProjectPane="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
@@ -69,6 +68,22 @@
             <path>
               <item name="Kural_xml_maker" type="b2602c69:ProjectViewProjectNode" />
               <item name="Kural_xml_maker" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Kural_xml_maker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Kural_xml_maker" type="462c0819:PsiDirectoryNode" />
+              <item name="raw_resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Kural_xml_maker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Kural_xml_maker" type="462c0819:PsiDirectoryNode" />
+              <item name="parser.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="Kural_xml_maker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Kural_xml_maker" type="462c0819:PsiDirectoryNode" />
+              <item name="parser.py" type="8704e2dd:PyFileNode" />
+              <item name="TextParser" type="dd8bbb05:PyElementNode" />
             </path>
           </expand>
           <select />
@@ -108,7 +123,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
@@ -136,8 +151,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="131" selection-start-line="131" selection-end-line="131" />
+        <state relative-caret-position="620">
+          <caret line="173" column="34" selection-start-line="173" selection-start-column="34" selection-end-line="173" selection-end-column="34" />
           <folding>
             <element signature="e#1#35#0" expanded="true" />
           </folding>
