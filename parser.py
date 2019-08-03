@@ -35,11 +35,29 @@ class TextParser:
         :param file : location of the file to be parsed
 
         """
+        self.level_prio = {}
         self.tags_level = {}
         self.tags_content = {}
         self.attributes = {}
+        self.__element_stack = []
         self.file_for_parsing = self._get_file_to_parse(file)
         logging.basicConfig(filename="./logs/running_log.log", level=logging.INFO)
+
+    def set_prio_for_level(self, level, prio):
+        """
+        level identifies the topic level as a string
+        prio is a integer value
+        :param level: string
+        :param prio: integer priority
+        :return: None
+        """
+        if level in self.level_prio.keys():
+            if self.level_prio[level] != prio:
+                raise Exception("contradicting priority value set for already existing level element in level_prio")
+        else:
+            self.level_prio[level] = prio
+            logging.info(f"level {level} has a priority of {prio}")
+
 
     def set_tag_for_level(self, level, tag):
         """
@@ -78,7 +96,7 @@ class TextParser:
         must be implemented before usage. raise UnimplementedFunctionError.
         to break the text, dev can use _parse_text() function
         :param text:
-        :return: (tag, content, **kwargs), kwargs should specify the attributes for the tag
+        :return: (super_tag, tag, content, **kwargs), kwargs should specify the attributes for the tag
         """
         raise UnimplementedFunctionError("implement the function first")
 
@@ -138,13 +156,13 @@ class TextParser:
     def _create_element_tree(self, root_element):
         """
         creates tree with the root element specified.
-        :param root_element:
+        :param root_element: root as ET.element object
         :return: tree
         """
         tree = ET.ElementTree(root_element)
         logging.info(f"tree has been created with {root_element} as root")
 
-    def _create_element(self, super_element, element_tag, content, **kwargs):
+    def _create_element(self, super_element, element_tag, content, *args, **kwargs):
         """
         creates a subelement for the given super element with the content.
         Attributes should be provided via kwargs
@@ -152,7 +170,7 @@ class TextParser:
         :param element_tag: string literal, name of the tag
         :param content: content to be added to tag
         :param kwargs: attributes should be added from the self.attributes item
-        :return: None
+        :return: element
         """
         # TODO: finish the function
 
@@ -167,17 +185,91 @@ class TextParser:
         logging.info(f"line parsed into {list_words}")
         return list_words
 
+    '''
+    def _find_element(self, level_tag, topic_name, root_element):
+        """
+        searches the tree for the subelement with the specified topic name under root_element
+        :param topic_name: topic as string
+        :param root_element: element object
+        :return: element object
+        """
+        for ele in root_element.findall(level_tag):
+            for key in ele.attrib:
+                if ele.attrib[key] == topic_name:
+                    return ele
+    '''
+
+    def _get_priority_of_level(self, level_tag):
+        for keys in self.tags_level.keys():
+            if self.tags_level[keys] == level_tag:
+                return self.level_prio[keys]
+        raise ElementDoesNotExist(f"level tag {level_tag} does not exist in priority table")
+
+    def _get_level_of_tag(self, tag):
+        for key in self.tags_level.keys():
+            if tag == key:
+                return key
+        raise ElementDoesNotExist(f"level of the tag {tag} does not exist in table")
+
     def parse(self):
         """
 
         :return:
         """
-        # TODO: finish the function
+        try:
+            if self.file_for_parsing is None:
+                raise FileNotAdded("Check file object")
+            elif self.tags_content.__sizeof__() == 0 or self.tags_level.__sizeof__() == 0 or self.level_prio.__sizeof__():
+                raise ParserTagsNotConfigured
+        except FileNotAdded as err:
+            logging.critical(f"exception occurred: {err}")
+        except ParserTagsNotConfigured as err:
+            logging.critical(f"exception occurred : {err}")
 
+        root_element = self._create_root("root")
+        self.__element_stack.append(root_element)
+        logging.info(f"root element created and added to the stack")
+        process_flag = True
 
+        for text in TextParser.__TextFileIterator(self.file_for_parsing):
+            "break the line and find out the level, get corresponding tag, content and attribute dictionary"
+            level, content, attrib_dict = self.find_type(text)
+            "get the super element from the stack"
+            super = self.__element_stack.pop()
+            logging.info(f"super element aquired for processing")
+            "create the subelement"
+            element = self._create_element(super, self.tags_level[level], content, attrib_dict)
+            logging.info(f"sub elemet created")
+            self.__element_stack.append(super)
+            logging.info(f"super element pushed back into the stack")
+            "find out if the new element should be pushed to stack"
+            if super is root_element:
+                self.__element_stack.append(element)
+                logging.info(f"new element pushed into stack")
+            elif self._get_priority_of_level(self._get_level_of_tag(super.tag)) < self._get_priority_of_level(level):
+                self.__element_stack.append(element)
+                logging.info(f"new element pushed into stack")
+            else:
+                logging.info(f"new element not pushed into stack")
+
+        tree = self._create_element_tree(root_element)
+        logging.info(f"tree created")
+        tree.write("./raw_resources/xml.xml")
+        logging.info(f"tree pushed into file")
 
 
 
 class UnimplementedFunctionError(Exception):
     pass
 
+
+class FileNotAdded(Exception):
+    pass
+
+
+class ParserTagsNotConfigured(Exception):
+    pass
+
+
+class ElementDoesNotExist(Exception):
+    pass
