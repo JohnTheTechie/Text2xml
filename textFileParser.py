@@ -18,32 +18,34 @@ class TextParser:
         """
 
         def __init__(self, file):
+            logging.info(f"iterator created")
             self.file = file
 
         def __iter__(self):
             return self
 
         def __next__(self):
-            return self.file.readline()
+            line = self.file.readline()
+            logging.info(f'{[elem.encode("hex") for elem in line]} returned from iterator')
+            return line
 
-
-    def __init__(self, file):
+    def __init__(self, file_path):
         """
         tags_level is a dictionary containing all tags for various topic levels
         tags_content is a dictionary containing tags for various content types/classes
 
-        :param file : location of the file to be parsed
+        :param file_path : location of the file to be parsed
 
         """
+        logging.basicConfig(filename="../logs/logs.txt", filemode="w", level=logging.DEBUG)
         self.level_prio = {}
         self.tags_level = {}
         self.tags_content = {}
         self.attributes = {}
         self.__element_stack = []
-        self.file_for_parsing = self._get_file_to_parse(file)
-        logging.basicConfig(filename="./logs/running_log.log", level=logging.INFO)
+        self.file_for_parsing = self._get_file_to_parse(file_path)
 
-    def set_prio_for_level(self, level, prio):
+    def set_prio_for_level(self, level=None, prio=None, **kwargs):
         """
         level identifies the topic level as a string
         prio is a integer value
@@ -51,34 +53,58 @@ class TextParser:
         :param prio: integer priority
         :return: None
         """
-        if level in self.level_prio.keys():
-            if self.level_prio[level] != prio:
-                raise Exception("contradicting priority value set for already existing level element in level_prio")
+        if level is not None and prio is not None:
+            if level in self.level_prio.keys():
+                if self.level_prio[level] != prio:
+                    raise Exception("contradicting priority value set for already existing level element in level_prio")
+            else:
+                self.level_prio[level] = prio
+                logging.info(f"level {level} has a priority of {prio}")
         else:
-            self.level_prio[level] = prio
-            logging.info(f"level {level} has a priority of {prio}")
+            for item in kwargs.items():
+                if item not in kwargs.keys():
+                    self.level_prio[item[0]] = item[1]
+                    logging.info(f"level_prio | priority for level : {item[0]} added to dictionary as {item[1]}")
+                else:
+                    logging.info(f"{item} already exist in self.level_prio")
 
-
-    def set_tag_for_level(self, level, tag):
+    def set_tag_for_level(self, level=None, tag=None, **kwargs):
         """
         set a tag for storing a topic type
         :param level: topic or header level as a string
         :param tag: xml tag
         :return: None
         """
-        self.tags_level[level] = tag
-        logging.info(f"xml tag set to {tag} for level_{level}")
+        logging.debug(f"level:{level},   tag:{tag},    dict:{kwargs}")
+        if level is not None and tag is not None:
+            self.tags_level[level] = tag
+            logging.info(f"xml tag set to {tag} for level_{level}")
+        else:
+            for item in kwargs.items():
+                if item[0] not in self.tags_level.keys():
+                    print(f"wtf da {item}")
+                    self.tags_level[item[0]] = item[1]
+                    logging.info(f"tags_level | tag for level : {item[0]} added to dictionary as {item[1]}")
+                else:
+                    logging.info(f"{item} already exist in self.tags_level")
 
-
-    def set_tag_for_content(self, content_class, tag):
+    def set_tag_for_content(self, content_class=None, tag=None, **kwargs):
         """
         set a tag for storing a content type or class
         :param content_class: content type or class as a string
         :param tag: xml tag
         :return: None
         """
-        self.tags_content[content_class] = tag
-        logging.info(f"xml tag set to {tag} for content_class {content_class}")
+        if content_class is not None and tag is not None:
+            self.tags_content[content_class] = tag
+            logging.info(f"xml tag set to {tag} for content_class {content_class}")
+        else:
+            for item in kwargs.items():
+                if item not in kwargs:
+                    self.tags_content[item[0]] = item[1]
+                    logging.info(f"tags_content | tag for content : {item[0]} added to dictionary as {item[1]}")
+                else:
+                    logging.info(f"{item} already exist in self.tags_content")
 
     def set_attributes_for_tag(self, tag, *args):
         """
@@ -94,7 +120,7 @@ class TextParser:
     def find_type(self, text):
         """
         must be implemented before usage. raise UnimplementedFunctionError.
-        to break the text, dev can use _parse_text() function
+        to break the text, dev can use parse_text() function
         :param text:
         :return: (super_tag, tag, content, **kwargs), kwargs should specify the attributes for the tag
         """
@@ -107,19 +133,21 @@ class TextParser:
         :return: file_object
         """
         try:
-            file = open(file_path)
-            logging.info(f"file {file_path} has been opened")
-            return file
+            abs_path = fpath.abspath(file_path)
+            logging.info(f"absolute path of the raw file aquired: {abs_path}")
+            if fpath.exists(abs_path):
+                file = open(file=abs_path, encoding="UTF-8")
+                logging.debug(f"file opened at {abs_path}")
+                logging.info(f"file {file_path} has been opened")
+                return file
+            else:
+                logging.critical(f"file does not exist at the specified path {abs_path}")
+                raise FileNotFoundError
         except FileNotFoundError:
-            print(f"OS error: {FileNotFoundError}")
-            logging.critical(f"{FileNotFoundError}")
-        except:
-            print(f"error {sys.exc_info()[0]}")
-            logging.critical(f"{sys.exc_info()[0]}")
-        finally:
-            print("check the file and try again")
-            logging.critical(f"the path of the file has to be checked")
-            exit()
+            print(f"OS error: {FileNotFoundError}, {sys.call_tracing()}")
+            logging.critical(f"{FileNotFoundError}. application need to quit")
+            exit(1)
+
 
     def _create_xml_file(self, path_xml_file, name_xml_file=None):
         """
@@ -161,6 +189,7 @@ class TextParser:
         """
         tree = ET.ElementTree(root_element)
         logging.info(f"tree has been created with {root_element} as root")
+        return tree
 
     def _create_element(self, super_element, element_tag, content, *args, **kwargs):
         """
@@ -177,7 +206,7 @@ class TextParser:
 
         return element
 
-    def _parse_text(self, text="", seperator=' '):
+    def parse_text(self, text="", seperator=' '):
         """
         seperate the input text and return a list of words
         :param text: line read from the file
@@ -202,7 +231,7 @@ class TextParser:
                     return ele
     '''
 
-    def _get_priority_of_level(self, level_tag):
+    def _get_priority_of_level_by_tag(self, level_tag):
         for keys in self.tags_level.keys():
             if self.tags_level[keys] == level_tag:
                 return self.level_prio[keys]
@@ -210,7 +239,7 @@ class TextParser:
 
     def _get_level_of_tag(self, tag):
         for key in self.tags_level.keys():
-            if tag == key:
+            if tag == self.tags_level[key]:
                 return key
         raise ElementDoesNotExist(f"level of the tag {tag} does not exist in table")
 
@@ -219,17 +248,16 @@ class TextParser:
         called before the initiation of parsing process to check if necessary parameters have been added
         :return:
         """
-        try:
-            if self.file_for_parsing is None:
-                raise FileNotAdded("Check file object")
-            elif self.tags_content.__sizeof__() == 0 or self.tags_level.__sizeof__() == 0 or self.level_prio.__sizeof__():
-                raise ParserTagsNotConfigured
-        except FileNotAdded as err:
-            logging.critical(f"exception occurred: {err}")
-            exit()
-        except ParserTagsNotConfigured as err:
-            logging.critical(f"exception occurred : {err}")
-            exit()
+
+        if self.file_for_parsing is None:
+            raise FileNotAdded("Check file object")
+        elif len(self.tags_content.items()) == 0 or len(self.tags_level.items()) == 0 or len(
+                self.level_prio.items()) == 0:
+            logging.debug(f"{self.tags_level}")
+            logging.debug(f"{self.tags_content}")
+            logging.debug(f"{self.level_prio}")
+            raise ParserTagsNotConfigured("configure tgs first")
+
         return True
 
     def _push_to_the_stack(self, element, subelement):
@@ -255,9 +283,9 @@ class TextParser:
         if element_under_test is self.root_element:
             logging.info(f"element {element_under_test.tag} is the root")
             return element_under_test
-        elif self._get_priority_of_level(self._get_level_of_tag(element_under_test.tag)) < self._get_priority_of_level(
+        elif self._get_priority_of_level_by_tag(element_under_test.tag) < self._get_priority_of_level_by_tag(
                 element_level):
-            if self._get_priority_of_level(element_level) - self._get_priority_of_level(
+            if self._get_priority_of_level_by_tag(element_level) - self._get_priority_of_level_by_tag(
                     self._get_level_of_tag(element_under_test.tag)) > 1:
                 logging.warning(f"the element from the stack is of much higher level than the element to be pushed.")
             logging.info(f"{element_under_test.tag} is returned from stack for process")
@@ -266,6 +294,21 @@ class TextParser:
             logging.info(f"stack needs to be poped further")
             return self._get_super_element_for_elment(element_under_test)
 
+    def subelement_creation_strategy(self, level, content, *args, **kwargs):
+        """
+        the extending class may override this functio to redife the strategy
+        :param level:
+        :param content:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+        element = self._get_super_element_for_elment(self.tags_level[level])
+        logging.info(f"super element aquired for processing")
+        subelement = self._create_element(element, self.tags_level[level], content, args[0])
+        logging.info(f"sub element created")
+        self._push_to_the_stack(element, subelement)
+        return subelement
 
     def parse(self):
         """
@@ -282,15 +325,12 @@ class TextParser:
 
         for text in TextParser.__TextFileIterator(self.file_for_parsing):
             "break the line and find out the level, get corresponding tag, content and attribute dictionary"
-            level, content, attrib_dict = self.find_type(text)
-            "get the super element from the stack"
-            element = self._get_super_element_for_elment(level)
-            logging.info(f"super element aquired for processing")
-            "create the subelement"
-            subelement = self._create_element(element, self.tags_level[level], content, attrib_dict)
-            logging.info(f"sub elemet created")
-            self._push_to_the_stack(element, subelement)
-            logging.info(f"super element pushed back into the stack")
+            logging.debug(f"{__name__} | {text} has been returned from iterator")
+            try:
+                topic_level, content, attrib_dict = self.find_type(text)
+                self.subelement_creation_strategy(topic_level, content, attrib_dict)
+            except Exception:
+                print("exception occurred")
 
         tree = self._create_element_tree(self.root_element)
         logging.info(f"tree created")
