@@ -172,7 +172,10 @@ class TextParser:
         :param kwargs: attributes should be added from the self.attributes item
         :return: element
         """
-        # TODO: finish the function
+        element = ET.SubElement(super_element, element_tag, args[0])
+        element.text = content
+
+        return element
 
     def _parse_text(self, text="", seperator=' '):
         """
@@ -211,9 +214,9 @@ class TextParser:
                 return key
         raise ElementDoesNotExist(f"level of the tag {tag} does not exist in table")
 
-    def parse(self):
+    def __sanity_check(self):
         """
-
+        called before the initiation of parsing process to check if necessary parameters have been added
         :return:
         """
         try:
@@ -223,39 +226,79 @@ class TextParser:
                 raise ParserTagsNotConfigured
         except FileNotAdded as err:
             logging.critical(f"exception occurred: {err}")
+            exit()
         except ParserTagsNotConfigured as err:
             logging.critical(f"exception occurred : {err}")
+            exit()
+        return True
 
-        root_element = self._create_root("root")
-        self.__element_stack.append(root_element)
+    def _push_to_the_stack(self, element, subelement):
+        """
+        add elements to stack in prio order
+        :param element:
+        :param subelement:
+        :return:
+        """
+        self.__element_stack.append(element)
+        self.__element_stack.append(subelement)
+        logging.info(f"{element.tag} and {subelement.tag} pushed to the stack")
+
+    def _get_super_element_for_elment(self, element_level):
+        """
+        compares the contents of the element stack contents and the passed element
+        returns a suitable super element to which element can be appended
+        :param element_level: element level as string. should be retrieved from self.tags_level
+        :return:
+        """
+        temp_stack = []
+        element_under_test = self.__element_stack.pop()
+        if element_under_test is self.root_element:
+            logging.info(f"element {element_under_test.tag} is the root")
+            return element_under_test
+        elif self._get_priority_of_level(self._get_level_of_tag(element_under_test.tag)) < self._get_priority_of_level(
+                element_level):
+            if self._get_priority_of_level(element_level) - self._get_priority_of_level(
+                    self._get_level_of_tag(element_under_test.tag)) > 1:
+                logging.warning(f"the element from the stack is of much higher level than the element to be pushed.")
+            logging.info(f"{element_under_test.tag} is returned from stack for process")
+            return element_under_test
+        else:
+            logging.info(f"stack needs to be poped further")
+            return self._get_super_element_for_elment(element_under_test)
+
+
+    def parse(self):
+        """
+        This functiona shall parse the contents of the specified file
+        Before calling this function, all necessary tags, priority and attributes need to be set
+        :return:
+        """
+
+        self.__sanity_check()
+
+        self.root_element = self._create_root("root")
+        self.__element_stack.append(self.root_element)
         logging.info(f"root element created and added to the stack")
-        process_flag = True
 
         for text in TextParser.__TextFileIterator(self.file_for_parsing):
             "break the line and find out the level, get corresponding tag, content and attribute dictionary"
             level, content, attrib_dict = self.find_type(text)
             "get the super element from the stack"
-            super = self.__element_stack.pop()
+            element = self._get_super_element_for_elment(level)
             logging.info(f"super element aquired for processing")
             "create the subelement"
-            element = self._create_element(super, self.tags_level[level], content, attrib_dict)
+            subelement = self._create_element(element, self.tags_level[level], content, attrib_dict)
             logging.info(f"sub elemet created")
-            self.__element_stack.append(super)
+            self._push_to_the_stack(element, subelement)
             logging.info(f"super element pushed back into the stack")
-            "find out if the new element should be pushed to stack"
-            if super is root_element:
-                self.__element_stack.append(element)
-                logging.info(f"new element pushed into stack")
-            elif self._get_priority_of_level(self._get_level_of_tag(super.tag)) < self._get_priority_of_level(level):
-                self.__element_stack.append(element)
-                logging.info(f"new element pushed into stack")
-            else:
-                logging.info(f"new element not pushed into stack")
 
-        tree = self._create_element_tree(root_element)
+        tree = self._create_element_tree(self.root_element)
         logging.info(f"tree created")
         tree.write("./raw_resources/xml.xml")
         logging.info(f"tree pushed into file")
+
+        del self.root_element
+
 
 
 
