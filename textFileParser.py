@@ -202,7 +202,10 @@ class TextParser:
         :param kwargs: attributes should be added from the self.attributes item
         :return: element
         """
-        element = ET.SubElement(super_element, element_tag, args[0])
+        if len(args[0].items()) == 0:
+            element = ET.SubElement(super_element, element_tag)
+        else:
+            element = ET.SubElement(super_element, element_tag, args[0])
         element.text = content
 
         return element
@@ -237,6 +240,10 @@ class TextParser:
         for keys in self.tags_level.keys():
             if self.tags_level[keys] == level_tag:
                 return self.level_prio[keys]
+        else:
+            for keys in self.tags_content.keys():
+                if self.tags_content[keys] == level_tag:
+                    return self.level_prio[keys]
         raise ElementDoesNotExist(f"level tag {level_tag} does not exist in priority table")
 
     def _get_level_of_tag(self, tag):
@@ -347,7 +354,7 @@ class TextParser:
             logging.info("*" * 40)
             count += 1
 
-            text = str(text.encode("utf-8"))
+            text = str(text).strip("\n")
             print("#" * 40, text)
             "break the line and find out the level, get corresponding tag, content and attribute dictionary"
             logging.debug(f"{text} has been returned from iterator")
