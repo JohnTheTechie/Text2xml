@@ -26,7 +26,8 @@ class TextParser:
 
         def __next__(self):
             line = self.file.readline()
-            logging.info(f'{[elem.encode("hex") for elem in line]} returned from iterator')
+            line.strip()
+            logging.info(f'{line} returned from iterator')
             return line
 
     def __init__(self, file_path):
@@ -232,6 +233,7 @@ class TextParser:
     '''
 
     def _get_priority_of_level_by_tag(self, level_tag):
+        logging.info(f"priority of tag {level_tag} requested")
         for keys in self.tags_level.keys():
             if self.tags_level[keys] == level_tag:
                 return self.level_prio[keys]
@@ -249,13 +251,14 @@ class TextParser:
         :return:
         """
 
+        logging.debug(f"{self.tags_level}")
+        logging.debug(f"{self.tags_content}")
+        logging.debug(f"{self.level_prio}")
+
         if self.file_for_parsing is None:
             raise FileNotAdded("Check file object")
-        elif len(self.tags_content.items()) == 0 or len(self.tags_level.items()) == 0 or len(
+        if len(self.tags_content.items()) == 0 or len(self.tags_level.items()) == 0 or len(
                 self.level_prio.items()) == 0:
-            logging.debug(f"{self.tags_level}")
-            logging.debug(f"{self.tags_content}")
-            logging.debug(f"{self.level_prio}")
             raise ParserTagsNotConfigured("configure tgs first")
 
         return True
@@ -278,21 +281,26 @@ class TextParser:
         :param element_level: element level as string. should be retrieved from self.tags_level
         :return:
         """
-        temp_stack = []
         element_under_test = self.__element_stack.pop()
+
         if element_under_test is self.root_element:
             logging.info(f"element {element_under_test.tag} is the root")
             return element_under_test
-        elif self._get_priority_of_level_by_tag(element_under_test.tag) < self._get_priority_of_level_by_tag(
-                element_level):
-            if self._get_priority_of_level_by_tag(element_level) - self._get_priority_of_level_by_tag(
-                    self._get_level_of_tag(element_under_test.tag)) > 1:
+
+        element_under_test_priority = self._get_priority_of_level_by_tag(element_under_test.tag)
+        element_level_priority = self._get_priority_of_level_by_tag(element_level)
+        logging.info(
+            f"{element_level}'s super element needs to be found | {element_under_test.tag} with prio:{element_under_test_priority} is the current potential super element")
+
+        if element_under_test_priority < element_level_priority:
+            logging.info(f"{element_under_test.tag} has higher priority than {element_level}")
+            if element_level_priority - element_under_test_priority > 1:
                 logging.warning(f"the element from the stack is of much higher level than the element to be pushed.")
             logging.info(f"{element_under_test.tag} is returned from stack for process")
             return element_under_test
         else:
             logging.info(f"stack needs to be poped further")
-            return self._get_super_element_for_elment(element_under_test)
+            return self._get_super_element_for_elment(element_level)
 
     def subelement_creation_strategy(self, level, content, *args, **kwargs):
         """
@@ -316,25 +324,44 @@ class TextParser:
         Before calling this function, all necessary tags, priority and attributes need to be set
         :return:
         """
-
+        logging.info("*" * 40)
+        logging.info("sanity check begins")
+        logging.info("*" * 40)
         self.__sanity_check()
+        logging.info("*" * 40)
+        logging.info("sanity check ends")
+        logging.info("*" * 40)
 
         self.root_element = self._create_root("root")
         self.__element_stack.append(self.root_element)
-        logging.info(f"root element created and added to the stack")
 
-        for text in TextParser.__TextFileIterator(self.file_for_parsing):
+        logging.info("*" * 40)
+        logging.info(f"root element created and added to the stack")
+        logging.info("*" * 40)
+
+        self.file_for_parsing.readline()
+        count = 0
+        for text in self.file_for_parsing:
+            logging.info("*" * 40)
+            logging.info(f"iteration count {count + 1}")
+            logging.info("*" * 40)
+            count += 1
+
+            text = str(text.encode("utf-8"))
+            print("#" * 40, text)
             "break the line and find out the level, get corresponding tag, content and attribute dictionary"
-            logging.debug(f"{__name__} | {text} has been returned from iterator")
-            try:
-                topic_level, content, attrib_dict = self.find_type(text)
-                self.subelement_creation_strategy(topic_level, content, attrib_dict)
-            except Exception:
-                print("exception occurred")
+            logging.debug(f"{text} has been returned from iterator")
+
+            topic_level, content, attrib_dict = self.find_type(text)
+
+            logging.info(f"passing subelement_creation_strategy({topic_level}, {content}, {attrib_dict})")
+            self.subelement_creation_strategy(topic_level, content, attrib_dict)
+
+
 
         tree = self._create_element_tree(self.root_element)
         logging.info(f"tree created")
-        tree.write("./raw_resources/xml.xml")
+        tree.write("../raw_resources/xml.xml")
         logging.info(f"tree pushed into file")
 
         del self.root_element

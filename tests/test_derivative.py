@@ -20,25 +20,46 @@ class KuralParser(textFileParser.TextParser):
         self.set_attributes_for_tag("level_3", "name", "index")
         self.set_attributes_for_tag("level_4", "index")
 
-    '''
+
     def subelement_creation_strategy(self, level, content, *args, **kwargs):
+        """
+
+        :param level:
+        :param content:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+        if not level == "empty string":
+            element = self._get_super_element_for_elment(self.tags_level[level])
+            logging.info(f"super element aquired for processing")
+            subelement = self._create_element(element, self.tags_level[level], content, args[0])
+            logging.info(f"sub element created")
+            self._push_to_the_stack(element, subelement)
+            return subelement
+
         
-        pass
-    '''
+
 
     def find_type(self, text=""):
+
         self.index += 1
         logging.debug(f"line index {self.index} : {text} being parsed")
         temp_stack = []
         temp_stack = text.split(" ")
-        logging.debug(f"{text} has been split into stack as {temp_stack}")
+        logging.info(f"{text} has been split into stack as {temp_stack}")
+        logging.info(f"{text} has length of {len(text)}")
 
         level_type = None
         level_attributes = {}
         content = None
 
-        if not temp_stack[0].isalpha():
-            logging.info(f"the text_{self.index}  starts with numerics. topic identified")
+        if len(text) == 5:
+            logging.info("empty string returned from file")
+            level_type = "empty string"
+            content = None
+        elif not temp_stack[0].isalpha():
+            logging.info(f"the text_{self.index}:{text} starts with numerics. topic identified")
             topic_level = temp_stack[0].split(".")
             logging.debug(f"topic indicator : {topic_level}")
             if len(topic_level) == 1:
@@ -61,14 +82,22 @@ class KuralParser(textFileParser.TextParser):
         else:
             if temp_stack[-1].isnumeric():
                 level_type = "adi_2"
-                content = text.rsplit(" ", 1)[0]
+                meter, cnt = text.rsplit(" ", 1)[0]
+                content = meter
+                logging.info(f"second line of poem :{meter}")
             else:
                 level_type = "adi_1"
                 content = text
+                logging.info(f"first line of poem {text}")
                 self.kural_index += 1
             level_attributes["index"] = self.kural_index
+        logging.info(
+            f"info type returns level_type:{level_type}, content:{content}, level_attributes:{level_attributes}")
         return level_type, content, level_attributes
 
 
 obj = KuralParser("../raw_resources/kural_text.txt")
+logging.info("#" * 40)
+logging.info("#" * 40)
+logging.info("#" * 40)
 obj.parse()
