@@ -1,0 +1,935 @@
+INFO:root:absolute path of the raw file aquired: C:\Users\user\PycharmProjects\Kural_xml_maker\raw_resources\kural_text.txt
+DEBUG:root:file opened at C:\Users\user\PycharmProjects\Kural_xml_maker\raw_resources\kural_text.txt
+INFO:root:file ../raw_resources/kural_text.txt has been opened
+DEBUG:root:level:None,   tag:None,    dict:{'level_1': 'Pal', 'level_2': 'Iyal', 'level_3': 'Athigaram', 'level_4': 'Kural'}
+INFO:root:tags_level | tag for level : level_1 added to dictionary as Pal
+INFO:root:tags_level | tag for level : level_2 added to dictionary as Iyal
+INFO:root:tags_level | tag for level : level_3 added to dictionary as Athigaram
+INFO:root:tags_level | tag for level : level_4 added to dictionary as Kural
+INFO:root:level_prio | priority for level : level_1 added to dictionary as 0
+INFO:root:level_prio | priority for level : level_2 added to dictionary as 1
+INFO:root:level_prio | priority for level : level_3 added to dictionary as 2
+INFO:root:level_prio | priority for level : level_4 added to dictionary as 3
+INFO:root:level_prio | priority for level : adi_1 added to dictionary as 4
+INFO:root:level_prio | priority for level : adi_2 added to dictionary as 4
+INFO:root:tags_content | tag for content : adi_1 added to dictionary as Mudhaladi
+INFO:root:tags_content | tag for content : adi_2 added to dictionary as Eetradi
+INFO:root:attributes ('name', 'index') have been set for the tag level_1
+INFO:root:attributes ('name', 'index') have been set for the tag level_2
+INFO:root:attributes ('name', 'index') have been set for the tag level_3
+INFO:root:attributes ('index',) have been set for the tag level_4
+INFO:root:########################################
+INFO:root:########################################
+INFO:root:########################################
+INFO:root:****************************************
+INFO:root:sanity check begins
+INFO:root:****************************************
+DEBUG:root:{'level_1': 'Pal', 'level_2': 'Iyal', 'level_3': 'Athigaram', 'level_4': 'Kural'}
+DEBUG:root:{'adi_1': 'Mudhaladi', 'adi_2': 'Eetradi'}
+DEBUG:root:{'level_1': 0, 'level_2': 1, 'level_3': 2, 'level_4': 3, 'adi_1': 4, 'adi_2': 4}
+INFO:root:****************************************
+INFO:root:sanity check ends
+INFO:root:****************************************
+INFO:root:root element with tag root has been created
+INFO:root:****************************************
+INFO:root:root element created and added to the stack
+INFO:root:****************************************
+INFO:root:****************************************
+INFO:root:iteration count 2 | parsing text : 1 pal
+INFO:root:****************************************
+DEBUG:root:line index 1 : 1 pal being parsed
+INFO:root:1 pal has been split into stack as ['1', 'pal']
+INFO:root:1 pal has length of 5
+INFO:root:the text_1:1 pal starts with numerics 1. topic identified
+DEBUG:root:topic indicator : ['1']
+DEBUG:root:1 pal broken into ['1', 'pal']
+INFO:root:info type returns level_type:level_1, content:None, level_attributes:{'name': 'pal', 'index': '1'}
+INFO:root:calling subelement_creation_strategy(level_1, None, {'name': 'pal', 'index': '1'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'level_1', None, ({'name': 'pal', 'index': '1'},), {})
+INFO:root:element root is the root
+INFO:root:super element aquired for processing
+INFO:root:sub element created
+INFO:root:root and Pal pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 3 | parsing text : 1.1 iyal
+INFO:root:****************************************
+DEBUG:root:line index 2 : 1.1 iyal being parsed
+INFO:root:1.1 iyal has been split into stack as ['1.1', 'iyal']
+INFO:root:1.1 iyal has length of 8
+INFO:root:the text_2:1.1 iyal starts with numerics 1.1. topic identified
+DEBUG:root:topic indicator : ['1', '1']
+DEBUG:root:1.1 iyal broken into ['1.1', 'iyal']
+INFO:root:info type returns level_type:level_2, content:None, level_attributes:{'name': 'iyal', 'index': '1'}
+INFO:root:calling subelement_creation_strategy(level_2, None, {'name': 'iyal', 'index': '1'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'level_2', None, ({'name': 'iyal', 'index': '1'},), {})
+INFO:root:priority of tag Pal requested
+INFO:root:priority of tag Iyal requested
+INFO:root:Iyal's super element needs to be found |             Pal with prio:0 is the current potential super element
+INFO:root:Pal has higher priority than Iyal
+INFO:root:Pal is returned from stack for process
+INFO:root:super element aquired for processing
+INFO:root:sub element created
+INFO:root:Pal and Iyal pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 4 | parsing text : 1.1.1 athi
+INFO:root:****************************************
+DEBUG:root:line index 3 : 1.1.1 athi being parsed
+INFO:root:1.1.1 athi has been split into stack as ['1.1.1', 'athi']
+INFO:root:1.1.1 athi has length of 10
+INFO:root:the text_3:1.1.1 athi starts with numerics 1.1.1. topic identified
+DEBUG:root:topic indicator : ['1', '1', '1']
+DEBUG:root:1.1.1 athi broken into ['1.1.1', 'athi']
+INFO:root:info type returns level_type:level_3, content:None, level_attributes:{'name': 'athi', 'index': '1'}
+INFO:root:calling subelement_creation_strategy(level_3, None, {'name': 'athi', 'index': '1'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'level_3', None, ({'name': 'athi', 'index': '1'},), {})
+INFO:root:priority of tag Iyal requested
+INFO:root:priority of tag Athigaram requested
+INFO:root:Athigaram's super element needs to be found |             Iyal with prio:1 is the current potential super element
+INFO:root:Iyal has higher priority than Athigaram
+INFO:root:Iyal is returned from stack for process
+INFO:root:super element aquired for processing
+INFO:root:sub element created
+INFO:root:Iyal and Athigaram pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 5 | parsing text : 
+INFO:root:****************************************
+DEBUG:root:line index 4 :  being parsed
+INFO:root: has been split into stack as ['']
+INFO:root: has length of 0
+INFO:root:empty string returned from file
+INFO:root:info type returns level_type:empty string, content:None, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(empty string, None, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'empty string', None, ({},), {})
+INFO:root:****************************************
+INFO:root:iteration count 6 | parsing text : absdef abcdef abcdef
+INFO:root:****************************************
+DEBUG:root:line index 5 : absdef abcdef abcdef being parsed
+INFO:root:absdef abcdef abcdef has been split into stack as ['absdef', 'abcdef', 'abcdef']
+INFO:root:absdef abcdef abcdef has length of 20
+INFO:root:first line of poem absdef abcdef abcdef
+INFO:root:info type returns level_type:adi_1, content:absdef abcdef abcdef, level_attributes:{'index': '1'}
+INFO:root:calling subelement_creation_strategy(adi_1, absdef abcdef abcdef, {'index': '1'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_1', 'absdef abcdef abcdef', ({'index': '1'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Kural requested
+INFO:root:Kural's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:Athigaram has higher priority than Kural
+INFO:root:Athigaram is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Kural element created with attributes {'index': '1'}
+INFO:root:Athigaram and Kural pushed to the stack
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:Mudhaladi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Mudhaladi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Mudhaladi element created
+INFO:root:Kural and Mudhaladi pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 7 | parsing text : qwerty qwerty 1
+INFO:root:****************************************
+DEBUG:root:line index 6 : qwerty qwerty 1 being parsed
+INFO:root:qwerty qwerty 1 has been split into stack as ['qwerty', 'qwerty', '1']
+INFO:root:qwerty qwerty 1 has length of 15
+INFO:root:second line of poem :qwerty qwerty
+INFO:root:info type returns level_type:adi_2, content:qwerty qwerty, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(adi_2, qwerty qwerty, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_2', 'qwerty qwerty', ({},), {})
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Mudhaladi with prio:4 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Eetradi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Eetradi element created
+INFO:root:****************************************
+INFO:root:iteration count 8 | parsing text : absdef abcdef abcdef
+INFO:root:****************************************
+DEBUG:root:line index 7 : absdef abcdef abcdef being parsed
+INFO:root:absdef abcdef abcdef has been split into stack as ['absdef', 'abcdef', 'abcdef']
+INFO:root:absdef abcdef abcdef has length of 20
+INFO:root:first line of poem absdef abcdef abcdef
+INFO:root:info type returns level_type:adi_1, content:absdef abcdef abcdef, level_attributes:{'index': '2'}
+INFO:root:calling subelement_creation_strategy(adi_1, absdef abcdef abcdef, {'index': '2'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_1', 'absdef abcdef abcdef', ({'index': '2'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Kural requested
+INFO:root:Kural's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:Athigaram has higher priority than Kural
+INFO:root:Athigaram is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Kural element created with attributes {'index': '2'}
+INFO:root:Athigaram and Kural pushed to the stack
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:Mudhaladi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Mudhaladi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Mudhaladi element created
+INFO:root:Kural and Mudhaladi pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 9 | parsing text : qwerty qwerty 2
+INFO:root:****************************************
+DEBUG:root:line index 8 : qwerty qwerty 2 being parsed
+INFO:root:qwerty qwerty 2 has been split into stack as ['qwerty', 'qwerty', '2']
+INFO:root:qwerty qwerty 2 has length of 15
+INFO:root:second line of poem :qwerty qwerty
+INFO:root:info type returns level_type:adi_2, content:qwerty qwerty, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(adi_2, qwerty qwerty, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_2', 'qwerty qwerty', ({},), {})
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Mudhaladi with prio:4 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Eetradi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Eetradi element created
+INFO:root:****************************************
+INFO:root:iteration count 10 | parsing text : absdef abcdef abcdef
+INFO:root:****************************************
+DEBUG:root:line index 9 : absdef abcdef abcdef being parsed
+INFO:root:absdef abcdef abcdef has been split into stack as ['absdef', 'abcdef', 'abcdef']
+INFO:root:absdef abcdef abcdef has length of 20
+INFO:root:first line of poem absdef abcdef abcdef
+INFO:root:info type returns level_type:adi_1, content:absdef abcdef abcdef, level_attributes:{'index': '3'}
+INFO:root:calling subelement_creation_strategy(adi_1, absdef abcdef abcdef, {'index': '3'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_1', 'absdef abcdef abcdef', ({'index': '3'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Kural requested
+INFO:root:Kural's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:Athigaram has higher priority than Kural
+INFO:root:Athigaram is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Kural element created with attributes {'index': '3'}
+INFO:root:Athigaram and Kural pushed to the stack
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:Mudhaladi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Mudhaladi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Mudhaladi element created
+INFO:root:Kural and Mudhaladi pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 11 | parsing text : qwerty qwerty 3
+INFO:root:****************************************
+DEBUG:root:line index 10 : qwerty qwerty 3 being parsed
+INFO:root:qwerty qwerty 3 has been split into stack as ['qwerty', 'qwerty', '3']
+INFO:root:qwerty qwerty 3 has length of 15
+INFO:root:second line of poem :qwerty qwerty
+INFO:root:info type returns level_type:adi_2, content:qwerty qwerty, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(adi_2, qwerty qwerty, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_2', 'qwerty qwerty', ({},), {})
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Mudhaladi with prio:4 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Eetradi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Eetradi element created
+INFO:root:****************************************
+INFO:root:iteration count 12 | parsing text : absdef abcdef abcdef
+INFO:root:****************************************
+DEBUG:root:line index 11 : absdef abcdef abcdef being parsed
+INFO:root:absdef abcdef abcdef has been split into stack as ['absdef', 'abcdef', 'abcdef']
+INFO:root:absdef abcdef abcdef has length of 20
+INFO:root:first line of poem absdef abcdef abcdef
+INFO:root:info type returns level_type:adi_1, content:absdef abcdef abcdef, level_attributes:{'index': '4'}
+INFO:root:calling subelement_creation_strategy(adi_1, absdef abcdef abcdef, {'index': '4'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_1', 'absdef abcdef abcdef', ({'index': '4'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Kural requested
+INFO:root:Kural's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:Athigaram has higher priority than Kural
+INFO:root:Athigaram is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Kural element created with attributes {'index': '4'}
+INFO:root:Athigaram and Kural pushed to the stack
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:Mudhaladi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Mudhaladi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Mudhaladi element created
+INFO:root:Kural and Mudhaladi pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 13 | parsing text : qwerty qwerty 4
+INFO:root:****************************************
+DEBUG:root:line index 12 : qwerty qwerty 4 being parsed
+INFO:root:qwerty qwerty 4 has been split into stack as ['qwerty', 'qwerty', '4']
+INFO:root:qwerty qwerty 4 has length of 15
+INFO:root:second line of poem :qwerty qwerty
+INFO:root:info type returns level_type:adi_2, content:qwerty qwerty, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(adi_2, qwerty qwerty, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_2', 'qwerty qwerty', ({},), {})
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Mudhaladi with prio:4 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Eetradi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Eetradi element created
+INFO:root:****************************************
+INFO:root:iteration count 14 | parsing text : absdef abcdef abcdef
+INFO:root:****************************************
+DEBUG:root:line index 13 : absdef abcdef abcdef being parsed
+INFO:root:absdef abcdef abcdef has been split into stack as ['absdef', 'abcdef', 'abcdef']
+INFO:root:absdef abcdef abcdef has length of 20
+INFO:root:first line of poem absdef abcdef abcdef
+INFO:root:info type returns level_type:adi_1, content:absdef abcdef abcdef, level_attributes:{'index': '5'}
+INFO:root:calling subelement_creation_strategy(adi_1, absdef abcdef abcdef, {'index': '5'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_1', 'absdef abcdef abcdef', ({'index': '5'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Kural requested
+INFO:root:Kural's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:Athigaram has higher priority than Kural
+INFO:root:Athigaram is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Kural element created with attributes {'index': '5'}
+INFO:root:Athigaram and Kural pushed to the stack
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:Mudhaladi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Mudhaladi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Mudhaladi element created
+INFO:root:Kural and Mudhaladi pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 15 | parsing text : qwerty qwerty 5
+INFO:root:****************************************
+DEBUG:root:line index 14 : qwerty qwerty 5 being parsed
+INFO:root:qwerty qwerty 5 has been split into stack as ['qwerty', 'qwerty', '5']
+INFO:root:qwerty qwerty 5 has length of 15
+INFO:root:second line of poem :qwerty qwerty
+INFO:root:info type returns level_type:adi_2, content:qwerty qwerty, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(adi_2, qwerty qwerty, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_2', 'qwerty qwerty', ({},), {})
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Mudhaladi with prio:4 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Eetradi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Eetradi element created
+INFO:root:****************************************
+INFO:root:iteration count 16 | parsing text : 
+INFO:root:****************************************
+DEBUG:root:line index 15 :  being parsed
+INFO:root: has been split into stack as ['']
+INFO:root: has length of 0
+INFO:root:empty string returned from file
+INFO:root:info type returns level_type:empty string, content:None, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(empty string, None, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'empty string', None, ({},), {})
+INFO:root:****************************************
+INFO:root:iteration count 17 | parsing text : 1.1.2 athi2
+INFO:root:****************************************
+DEBUG:root:line index 16 : 1.1.2 athi2 being parsed
+INFO:root:1.1.2 athi2 has been split into stack as ['1.1.2', 'athi2']
+INFO:root:1.1.2 athi2 has length of 11
+INFO:root:the text_16:1.1.2 athi2 starts with numerics 1.1.2. topic identified
+DEBUG:root:topic indicator : ['1', '1', '2']
+DEBUG:root:1.1.2 athi2 broken into ['1.1.2', 'athi2']
+INFO:root:info type returns level_type:level_3, content:None, level_attributes:{'name': 'athi2', 'index': '2'}
+INFO:root:calling subelement_creation_strategy(level_3, None, {'name': 'athi2', 'index': '2'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'level_3', None, ({'name': 'athi2', 'index': '2'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Athigaram requested
+INFO:root:Athigaram's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Iyal requested
+INFO:root:priority of tag Athigaram requested
+INFO:root:Athigaram's super element needs to be found |             Iyal with prio:1 is the current potential super element
+INFO:root:Iyal has higher priority than Athigaram
+INFO:root:Iyal is returned from stack for process
+INFO:root:super element aquired for processing
+INFO:root:sub element created
+INFO:root:Iyal and Athigaram pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 18 | parsing text : absdef abcdef abcdef
+INFO:root:****************************************
+DEBUG:root:line index 17 : absdef abcdef abcdef being parsed
+INFO:root:absdef abcdef abcdef has been split into stack as ['absdef', 'abcdef', 'abcdef']
+INFO:root:absdef abcdef abcdef has length of 20
+INFO:root:first line of poem absdef abcdef abcdef
+INFO:root:info type returns level_type:adi_1, content:absdef abcdef abcdef, level_attributes:{'index': '6'}
+INFO:root:calling subelement_creation_strategy(adi_1, absdef abcdef abcdef, {'index': '6'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_1', 'absdef abcdef abcdef', ({'index': '6'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Kural requested
+INFO:root:Kural's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:Athigaram has higher priority than Kural
+INFO:root:Athigaram is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Kural element created with attributes {'index': '6'}
+INFO:root:Athigaram and Kural pushed to the stack
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:Mudhaladi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Mudhaladi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Mudhaladi element created
+INFO:root:Kural and Mudhaladi pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 19 | parsing text : qwerty qwerty 6
+INFO:root:****************************************
+DEBUG:root:line index 18 : qwerty qwerty 6 being parsed
+INFO:root:qwerty qwerty 6 has been split into stack as ['qwerty', 'qwerty', '6']
+INFO:root:qwerty qwerty 6 has length of 15
+INFO:root:second line of poem :qwerty qwerty
+INFO:root:info type returns level_type:adi_2, content:qwerty qwerty, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(adi_2, qwerty qwerty, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_2', 'qwerty qwerty', ({},), {})
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Mudhaladi with prio:4 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Eetradi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Eetradi element created
+INFO:root:****************************************
+INFO:root:iteration count 20 | parsing text : absdef abcdef abcdef
+INFO:root:****************************************
+DEBUG:root:line index 19 : absdef abcdef abcdef being parsed
+INFO:root:absdef abcdef abcdef has been split into stack as ['absdef', 'abcdef', 'abcdef']
+INFO:root:absdef abcdef abcdef has length of 20
+INFO:root:first line of poem absdef abcdef abcdef
+INFO:root:info type returns level_type:adi_1, content:absdef abcdef abcdef, level_attributes:{'index': '7'}
+INFO:root:calling subelement_creation_strategy(adi_1, absdef abcdef abcdef, {'index': '7'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_1', 'absdef abcdef abcdef', ({'index': '7'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Kural requested
+INFO:root:Kural's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:Athigaram has higher priority than Kural
+INFO:root:Athigaram is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Kural element created with attributes {'index': '7'}
+INFO:root:Athigaram and Kural pushed to the stack
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:Mudhaladi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Mudhaladi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Mudhaladi element created
+INFO:root:Kural and Mudhaladi pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 21 | parsing text : qwerty qwerty 7
+INFO:root:****************************************
+DEBUG:root:line index 20 : qwerty qwerty 7 being parsed
+INFO:root:qwerty qwerty 7 has been split into stack as ['qwerty', 'qwerty', '7']
+INFO:root:qwerty qwerty 7 has length of 15
+INFO:root:second line of poem :qwerty qwerty
+INFO:root:info type returns level_type:adi_2, content:qwerty qwerty, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(adi_2, qwerty qwerty, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_2', 'qwerty qwerty', ({},), {})
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Mudhaladi with prio:4 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Eetradi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Eetradi element created
+INFO:root:****************************************
+INFO:root:iteration count 22 | parsing text : absdef abcdef abcdef
+INFO:root:****************************************
+DEBUG:root:line index 21 : absdef abcdef abcdef being parsed
+INFO:root:absdef abcdef abcdef has been split into stack as ['absdef', 'abcdef', 'abcdef']
+INFO:root:absdef abcdef abcdef has length of 20
+INFO:root:first line of poem absdef abcdef abcdef
+INFO:root:info type returns level_type:adi_1, content:absdef abcdef abcdef, level_attributes:{'index': '8'}
+INFO:root:calling subelement_creation_strategy(adi_1, absdef abcdef abcdef, {'index': '8'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_1', 'absdef abcdef abcdef', ({'index': '8'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Kural requested
+INFO:root:Kural's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:Athigaram has higher priority than Kural
+INFO:root:Athigaram is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Kural element created with attributes {'index': '8'}
+INFO:root:Athigaram and Kural pushed to the stack
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:Mudhaladi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Mudhaladi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Mudhaladi element created
+INFO:root:Kural and Mudhaladi pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 23 | parsing text : qwerty qwerty 8
+INFO:root:****************************************
+DEBUG:root:line index 22 : qwerty qwerty 8 being parsed
+INFO:root:qwerty qwerty 8 has been split into stack as ['qwerty', 'qwerty', '8']
+INFO:root:qwerty qwerty 8 has length of 15
+INFO:root:second line of poem :qwerty qwerty
+INFO:root:info type returns level_type:adi_2, content:qwerty qwerty, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(adi_2, qwerty qwerty, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_2', 'qwerty qwerty', ({},), {})
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Mudhaladi with prio:4 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Eetradi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Eetradi element created
+INFO:root:****************************************
+INFO:root:iteration count 24 | parsing text : 
+INFO:root:****************************************
+DEBUG:root:line index 23 :  being parsed
+INFO:root: has been split into stack as ['']
+INFO:root: has length of 0
+INFO:root:empty string returned from file
+INFO:root:info type returns level_type:empty string, content:None, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(empty string, None, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'empty string', None, ({},), {})
+INFO:root:****************************************
+INFO:root:iteration count 25 | parsing text : 1.2 iyal2
+INFO:root:****************************************
+DEBUG:root:line index 24 : 1.2 iyal2 being parsed
+INFO:root:1.2 iyal2 has been split into stack as ['1.2', 'iyal2']
+INFO:root:1.2 iyal2 has length of 9
+INFO:root:the text_24:1.2 iyal2 starts with numerics 1.2. topic identified
+DEBUG:root:topic indicator : ['1', '2']
+DEBUG:root:1.2 iyal2 broken into ['1.2', 'iyal2']
+INFO:root:info type returns level_type:level_2, content:None, level_attributes:{'name': 'iyal2', 'index': '2'}
+INFO:root:calling subelement_creation_strategy(level_2, None, {'name': 'iyal2', 'index': '2'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'level_2', None, ({'name': 'iyal2', 'index': '2'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Iyal requested
+INFO:root:Iyal's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Iyal requested
+INFO:root:priority of tag Iyal requested
+INFO:root:Iyal's super element needs to be found |             Iyal with prio:1 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Pal requested
+INFO:root:priority of tag Iyal requested
+INFO:root:Iyal's super element needs to be found |             Pal with prio:0 is the current potential super element
+INFO:root:Pal has higher priority than Iyal
+INFO:root:Pal is returned from stack for process
+INFO:root:super element aquired for processing
+INFO:root:sub element created
+INFO:root:Pal and Iyal pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 26 | parsing text : 1.2.1 athi3
+INFO:root:****************************************
+DEBUG:root:line index 25 : 1.2.1 athi3 being parsed
+INFO:root:1.2.1 athi3 has been split into stack as ['1.2.1', 'athi3']
+INFO:root:1.2.1 athi3 has length of 11
+INFO:root:the text_25:1.2.1 athi3 starts with numerics 1.2.1. topic identified
+DEBUG:root:topic indicator : ['1', '2', '1']
+DEBUG:root:1.2.1 athi3 broken into ['1.2.1', 'athi3']
+INFO:root:info type returns level_type:level_3, content:None, level_attributes:{'name': 'athi3', 'index': '1'}
+INFO:root:calling subelement_creation_strategy(level_3, None, {'name': 'athi3', 'index': '1'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'level_3', None, ({'name': 'athi3', 'index': '1'},), {})
+INFO:root:priority of tag Iyal requested
+INFO:root:priority of tag Athigaram requested
+INFO:root:Athigaram's super element needs to be found |             Iyal with prio:1 is the current potential super element
+INFO:root:Iyal has higher priority than Athigaram
+INFO:root:Iyal is returned from stack for process
+INFO:root:super element aquired for processing
+INFO:root:sub element created
+INFO:root:Iyal and Athigaram pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 27 | parsing text : absdef abcdef abcdef
+INFO:root:****************************************
+DEBUG:root:line index 26 : absdef abcdef abcdef being parsed
+INFO:root:absdef abcdef abcdef has been split into stack as ['absdef', 'abcdef', 'abcdef']
+INFO:root:absdef abcdef abcdef has length of 20
+INFO:root:first line of poem absdef abcdef abcdef
+INFO:root:info type returns level_type:adi_1, content:absdef abcdef abcdef, level_attributes:{'index': '9'}
+INFO:root:calling subelement_creation_strategy(adi_1, absdef abcdef abcdef, {'index': '9'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_1', 'absdef abcdef abcdef', ({'index': '9'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Kural requested
+INFO:root:Kural's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:Athigaram has higher priority than Kural
+INFO:root:Athigaram is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Kural element created with attributes {'index': '9'}
+INFO:root:Athigaram and Kural pushed to the stack
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:Mudhaladi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Mudhaladi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Mudhaladi element created
+INFO:root:Kural and Mudhaladi pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 28 | parsing text : qwerty qwerty 9
+INFO:root:****************************************
+DEBUG:root:line index 27 : qwerty qwerty 9 being parsed
+INFO:root:qwerty qwerty 9 has been split into stack as ['qwerty', 'qwerty', '9']
+INFO:root:qwerty qwerty 9 has length of 15
+INFO:root:second line of poem :qwerty qwerty
+INFO:root:info type returns level_type:adi_2, content:qwerty qwerty, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(adi_2, qwerty qwerty, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_2', 'qwerty qwerty', ({},), {})
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Mudhaladi with prio:4 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Eetradi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Eetradi element created
+INFO:root:****************************************
+INFO:root:iteration count 29 | parsing text : absdef abcdef abcdef
+INFO:root:****************************************
+DEBUG:root:line index 28 : absdef abcdef abcdef being parsed
+INFO:root:absdef abcdef abcdef has been split into stack as ['absdef', 'abcdef', 'abcdef']
+INFO:root:absdef abcdef abcdef has length of 20
+INFO:root:first line of poem absdef abcdef abcdef
+INFO:root:info type returns level_type:adi_1, content:absdef abcdef abcdef, level_attributes:{'index': '10'}
+INFO:root:calling subelement_creation_strategy(adi_1, absdef abcdef abcdef, {'index': '10'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_1', 'absdef abcdef abcdef', ({'index': '10'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Kural requested
+INFO:root:Kural's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:Athigaram has higher priority than Kural
+INFO:root:Athigaram is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Kural element created with attributes {'index': '10'}
+INFO:root:Athigaram and Kural pushed to the stack
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:Mudhaladi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Mudhaladi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Mudhaladi element created
+INFO:root:Kural and Mudhaladi pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 30 | parsing text : qwerty qwerty 10
+INFO:root:****************************************
+DEBUG:root:line index 29 : qwerty qwerty 10 being parsed
+INFO:root:qwerty qwerty 10 has been split into stack as ['qwerty', 'qwerty', '10']
+INFO:root:qwerty qwerty 10 has length of 16
+INFO:root:second line of poem :qwerty qwerty
+INFO:root:info type returns level_type:adi_2, content:qwerty qwerty, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(adi_2, qwerty qwerty, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_2', 'qwerty qwerty', ({},), {})
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Mudhaladi with prio:4 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Eetradi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Eetradi element created
+INFO:root:****************************************
+INFO:root:iteration count 31 | parsing text : absdef abcdef abcdef
+INFO:root:****************************************
+DEBUG:root:line index 30 : absdef abcdef abcdef being parsed
+INFO:root:absdef abcdef abcdef has been split into stack as ['absdef', 'abcdef', 'abcdef']
+INFO:root:absdef abcdef abcdef has length of 20
+INFO:root:first line of poem absdef abcdef abcdef
+INFO:root:info type returns level_type:adi_1, content:absdef abcdef abcdef, level_attributes:{'index': '11'}
+INFO:root:calling subelement_creation_strategy(adi_1, absdef abcdef abcdef, {'index': '11'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_1', 'absdef abcdef abcdef', ({'index': '11'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Kural requested
+INFO:root:Kural's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:Athigaram has higher priority than Kural
+INFO:root:Athigaram is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Kural element created with attributes {'index': '11'}
+INFO:root:Athigaram and Kural pushed to the stack
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:Mudhaladi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Mudhaladi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Mudhaladi element created
+INFO:root:Kural and Mudhaladi pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 32 | parsing text : qwerty qwerty 11
+INFO:root:****************************************
+DEBUG:root:line index 31 : qwerty qwerty 11 being parsed
+INFO:root:qwerty qwerty 11 has been split into stack as ['qwerty', 'qwerty', '11']
+INFO:root:qwerty qwerty 11 has length of 16
+INFO:root:second line of poem :qwerty qwerty
+INFO:root:info type returns level_type:adi_2, content:qwerty qwerty, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(adi_2, qwerty qwerty, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_2', 'qwerty qwerty', ({},), {})
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Mudhaladi with prio:4 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Eetradi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Eetradi element created
+INFO:root:****************************************
+INFO:root:iteration count 33 | parsing text : 
+INFO:root:****************************************
+DEBUG:root:line index 32 :  being parsed
+INFO:root: has been split into stack as ['']
+INFO:root: has length of 0
+INFO:root:empty string returned from file
+INFO:root:info type returns level_type:empty string, content:None, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(empty string, None, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'empty string', None, ({},), {})
+INFO:root:****************************************
+INFO:root:iteration count 34 | parsing text : 2 pal2
+INFO:root:****************************************
+DEBUG:root:line index 33 : 2 pal2 being parsed
+INFO:root:2 pal2 has been split into stack as ['2', 'pal2']
+INFO:root:2 pal2 has length of 6
+INFO:root:the text_33:2 pal2 starts with numerics 2. topic identified
+DEBUG:root:topic indicator : ['2']
+DEBUG:root:2 pal2 broken into ['2', 'pal2']
+INFO:root:info type returns level_type:level_1, content:None, level_attributes:{'name': 'pal2', 'index': '2'}
+INFO:root:calling subelement_creation_strategy(level_1, None, {'name': 'pal2', 'index': '2'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'level_1', None, ({'name': 'pal2', 'index': '2'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Pal requested
+INFO:root:Pal's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Iyal requested
+INFO:root:priority of tag Pal requested
+INFO:root:Pal's super element needs to be found |             Iyal with prio:1 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Pal requested
+INFO:root:priority of tag Pal requested
+INFO:root:Pal's super element needs to be found |             Pal with prio:0 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:element root is the root
+INFO:root:super element aquired for processing
+INFO:root:sub element created
+INFO:root:root and Pal pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 35 | parsing text : 2.1 iayal3
+INFO:root:****************************************
+DEBUG:root:line index 34 : 2.1 iayal3 being parsed
+INFO:root:2.1 iayal3 has been split into stack as ['2.1', 'iayal3']
+INFO:root:2.1 iayal3 has length of 10
+INFO:root:the text_34:2.1 iayal3 starts with numerics 2.1. topic identified
+DEBUG:root:topic indicator : ['2', '1']
+DEBUG:root:2.1 iayal3 broken into ['2.1', 'iayal3']
+INFO:root:info type returns level_type:level_2, content:None, level_attributes:{'name': 'iayal3', 'index': '1'}
+INFO:root:calling subelement_creation_strategy(level_2, None, {'name': 'iayal3', 'index': '1'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'level_2', None, ({'name': 'iayal3', 'index': '1'},), {})
+INFO:root:priority of tag Pal requested
+INFO:root:priority of tag Iyal requested
+INFO:root:Iyal's super element needs to be found |             Pal with prio:0 is the current potential super element
+INFO:root:Pal has higher priority than Iyal
+INFO:root:Pal is returned from stack for process
+INFO:root:super element aquired for processing
+INFO:root:sub element created
+INFO:root:Pal and Iyal pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 36 | parsing text : 2.1.1 athi4
+INFO:root:****************************************
+DEBUG:root:line index 35 : 2.1.1 athi4 being parsed
+INFO:root:2.1.1 athi4 has been split into stack as ['2.1.1', 'athi4']
+INFO:root:2.1.1 athi4 has length of 11
+INFO:root:the text_35:2.1.1 athi4 starts with numerics 2.1.1. topic identified
+DEBUG:root:topic indicator : ['2', '1', '1']
+DEBUG:root:2.1.1 athi4 broken into ['2.1.1', 'athi4']
+INFO:root:info type returns level_type:level_3, content:None, level_attributes:{'name': 'athi4', 'index': '1'}
+INFO:root:calling subelement_creation_strategy(level_3, None, {'name': 'athi4', 'index': '1'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'level_3', None, ({'name': 'athi4', 'index': '1'},), {})
+INFO:root:priority of tag Iyal requested
+INFO:root:priority of tag Athigaram requested
+INFO:root:Athigaram's super element needs to be found |             Iyal with prio:1 is the current potential super element
+INFO:root:Iyal has higher priority than Athigaram
+INFO:root:Iyal is returned from stack for process
+INFO:root:super element aquired for processing
+INFO:root:sub element created
+INFO:root:Iyal and Athigaram pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 37 | parsing text : absdef abcdef abcdef
+INFO:root:****************************************
+DEBUG:root:line index 36 : absdef abcdef abcdef being parsed
+INFO:root:absdef abcdef abcdef has been split into stack as ['absdef', 'abcdef', 'abcdef']
+INFO:root:absdef abcdef abcdef has length of 20
+INFO:root:first line of poem absdef abcdef abcdef
+INFO:root:info type returns level_type:adi_1, content:absdef abcdef abcdef, level_attributes:{'index': '12'}
+INFO:root:calling subelement_creation_strategy(adi_1, absdef abcdef abcdef, {'index': '12'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_1', 'absdef abcdef abcdef', ({'index': '12'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Kural requested
+INFO:root:Kural's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:Athigaram has higher priority than Kural
+INFO:root:Athigaram is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Kural element created with attributes {'index': '12'}
+INFO:root:Athigaram and Kural pushed to the stack
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:Mudhaladi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Mudhaladi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Mudhaladi element created
+INFO:root:Kural and Mudhaladi pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 38 | parsing text : qwerty qwerty 12
+INFO:root:****************************************
+DEBUG:root:line index 37 : qwerty qwerty 12 being parsed
+INFO:root:qwerty qwerty 12 has been split into stack as ['qwerty', 'qwerty', '12']
+INFO:root:qwerty qwerty 12 has length of 16
+INFO:root:second line of poem :qwerty qwerty
+INFO:root:info type returns level_type:adi_2, content:qwerty qwerty, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(adi_2, qwerty qwerty, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_2', 'qwerty qwerty', ({},), {})
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Mudhaladi with prio:4 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Eetradi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Eetradi element created
+INFO:root:****************************************
+INFO:root:iteration count 39 | parsing text : absdef abcdef abcdef
+INFO:root:****************************************
+DEBUG:root:line index 38 : absdef abcdef abcdef being parsed
+INFO:root:absdef abcdef abcdef has been split into stack as ['absdef', 'abcdef', 'abcdef']
+INFO:root:absdef abcdef abcdef has length of 20
+INFO:root:first line of poem absdef abcdef abcdef
+INFO:root:info type returns level_type:adi_1, content:absdef abcdef abcdef, level_attributes:{'index': '13'}
+INFO:root:calling subelement_creation_strategy(adi_1, absdef abcdef abcdef, {'index': '13'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_1', 'absdef abcdef abcdef', ({'index': '13'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Kural requested
+INFO:root:Kural's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:Athigaram has higher priority than Kural
+INFO:root:Athigaram is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Kural element created with attributes {'index': '13'}
+INFO:root:Athigaram and Kural pushed to the stack
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:Mudhaladi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Mudhaladi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Mudhaladi element created
+INFO:root:Kural and Mudhaladi pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 40 | parsing text : qwerty qwerty 13
+INFO:root:****************************************
+DEBUG:root:line index 39 : qwerty qwerty 13 being parsed
+INFO:root:qwerty qwerty 13 has been split into stack as ['qwerty', 'qwerty', '13']
+INFO:root:qwerty qwerty 13 has length of 16
+INFO:root:second line of poem :qwerty qwerty
+INFO:root:info type returns level_type:adi_2, content:qwerty qwerty, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(adi_2, qwerty qwerty, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_2', 'qwerty qwerty', ({},), {})
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Mudhaladi with prio:4 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Eetradi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Eetradi element created
+INFO:root:****************************************
+INFO:root:iteration count 41 | parsing text : absdef abcdef abcdef
+INFO:root:****************************************
+DEBUG:root:line index 40 : absdef abcdef abcdef being parsed
+INFO:root:absdef abcdef abcdef has been split into stack as ['absdef', 'abcdef', 'abcdef']
+INFO:root:absdef abcdef abcdef has length of 20
+INFO:root:first line of poem absdef abcdef abcdef
+INFO:root:info type returns level_type:adi_1, content:absdef abcdef abcdef, level_attributes:{'index': '14'}
+INFO:root:calling subelement_creation_strategy(adi_1, absdef abcdef abcdef, {'index': '14'})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_1', 'absdef abcdef abcdef', ({'index': '14'},), {})
+INFO:root:priority of tag Athigaram requested
+INFO:root:priority of tag Kural requested
+INFO:root:Kural's super element needs to be found |             Athigaram with prio:2 is the current potential super element
+INFO:root:Athigaram has higher priority than Kural
+INFO:root:Athigaram is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Kural element created with attributes {'index': '14'}
+INFO:root:Athigaram and Kural pushed to the stack
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:Mudhaladi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Mudhaladi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Mudhaladi element created
+INFO:root:Kural and Mudhaladi pushed to the stack
+INFO:root:****************************************
+INFO:root:iteration count 42 | parsing text : qwerty qwerty 14
+INFO:root:****************************************
+DEBUG:root:line index 41 : qwerty qwerty 14 being parsed
+INFO:root:qwerty qwerty 14 has been split into stack as ['qwerty', 'qwerty', '14']
+INFO:root:qwerty qwerty 14 has length of 16
+INFO:root:second line of poem :qwerty qwerty
+INFO:root:info type returns level_type:adi_2, content:qwerty qwerty, level_attributes:{}
+INFO:root:calling subelement_creation_strategy(adi_2, qwerty qwerty, {})
+DEBUG:root:subelement_creation_strategy(self, level, content, *args, **kwargs) |             args received (<__main__.KuralParser object at 0x0000019F3308E208>, 'adi_2', 'qwerty qwerty', ({},), {})
+INFO:root:priority of tag Mudhaladi requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Mudhaladi with prio:4 is the current potential super element
+INFO:root:stack needs to be poped further
+INFO:root:priority of tag Kural requested
+INFO:root:priority of tag Eetradi requested
+INFO:root:Eetradi's super element needs to be found |             Kural with prio:3 is the current potential super element
+INFO:root:Kural has higher priority than Eetradi
+INFO:root:Kural is returned from stack for process
+INFO:root:super element acquired for processing
+INFO:root:Eetradi element created
+INFO:root:tree has been created with <Element 'root' at 0x0000019F33306098> as root
+INFO:root:tree created
+INFO:root:****************************************
+INFO:root:tree pushed into file
+INFO:root:****************************************

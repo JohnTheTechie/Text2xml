@@ -4,31 +4,14 @@ import os.path as fpath
 import sys
 import xml.etree.ElementTree as ET
 
+from errors import *
+
 
 class TextParser:
     """
     class for parsing multilevel text documents
-    developers using this class must implement find_type()
+    developers using this class must implement interpret()
     """
-
-    class __TextFileIterator:
-        """
-        iterator class for file contents.
-        returns contents line by line
-        """
-
-        def __init__(self, file):
-            logging.info(f"iterator created")
-            self.file = file
-
-        def __iter__(self):
-            return self
-
-        def __next__(self):
-            line = self.file.readline()
-            line.strip()
-            logging.info(f'{line} returned from iterator')
-            return line
 
     def __init__(self, file_path):
         """
@@ -44,23 +27,24 @@ class TextParser:
         self.tags_content = {}
         self.attributes = {}
         self.__element_stack = []
+        self.root_element = None
         self.file_for_parsing = self._get_file_to_parse(file_path)
 
-    def set_prio_for_level(self, level=None, prio=None, **kwargs):
+    def set_priority_for_level(self, level=None, priority=None, **kwargs):
         """
         level identifies the topic level as a string
         prio is a integer value
         :param level: string
-        :param prio: integer priority
+        :param priority: integer priority
         :return: None
         """
-        if level is not None and prio is not None:
+        if level is not None and priority is not None:
             if level in self.level_prio.keys():
-                if self.level_prio[level] != prio:
+                if self.level_prio[level] != priority:
                     raise Exception("contradicting priority value set for already existing level element in level_prio")
             else:
-                self.level_prio[level] = prio
-                logging.info(f"level {level} has a priority of {prio}")
+                self.level_prio[level] = priority
+                logging.info(f"level {level} has a priority of {priority}")
         else:
             for item in kwargs.items():
                 if item not in kwargs.keys():
@@ -111,21 +95,10 @@ class TextParser:
         """
         set a list of attributes for each tag
         :param tag: tag to which attributes are needed to be attached
-        :param attribute_set: list of attributes
         :return: None
         """
         self.attributes[tag] = args
         logging.info(f"attributes {args} have been set for the tag {tag}")
-
-
-    def find_type(self, text):
-        """
-        must be implemented before usage. raise UnimplementedFunctionError.
-        to break the text, dev can use parse_text() function
-        :param text:
-        :return: (super_tag, tag, content, **kwargs), kwargs should specify the attributes for the tag
-        """
-        raise UnimplementedFunctionError("implement the function first")
 
     def _get_file_to_parse(self, file_path):
         """
@@ -145,10 +118,78 @@ class TextParser:
                 logging.critical(f"file does not exist at the specified path {abs_path}")
                 raise FileNotFoundError
         except FileNotFoundError:
-            print(f"OS error: {FileNotFoundError}, {sys.call_tracing()}")
-            logging.critical(f"{FileNotFoundError}. application need to quit")
+            print(f"OS error: {FileNotFoundError.__traceback__}")
+            logging.critical(f"_get_file_to_parse | {FileNotFoundError}. application need to quit")
             exit(1)
 
+    def _create_root(self, root_tag):
+        """
+        creates the root element for the xml file
+        :param root_tag: string
+        :return: xml element
+        """
+        element = ET.Element(root_tag)
+        logging.info(f"root element with tag {root_tag} has been created")
+        return element
+
+    def _create_element(self, super_element, element_tag, content, *args):
+        """
+        creates a subelement for the given super element with the content.
+        Attributes should be provided via kwargs
+        :param super_element: elementTree.element object
+        :param element_tag: string literal, name of the tag
+        :param content: content to be added to tag
+        :param kwargs: attributes should be added from the self.attributes item
+        :return: element
+        """
+        if len(args[0].items()) == 0:
+            element = ET.SubElement(super_element, element_tag)
+        else:
+            element = ET.SubElement(super_element, element_tag, args[0])
+        element.text = content
+
+        return element
+
+    def _create_element_tree(self, root_element):
+        """
+        creates tree with the root element specified.
+        :param root_element: root as ET.element object
+        :return: tree
+        """
+        tree = ET.ElementTree(root_element)
+        logging.info(f"tree has been created with {root_element} as root")
+        return tree
+
+    def split_text(self, text="", separator=' ', split_dir_from_left=True):
+        """
+        seperate the input text and return a list of words
+        :param text: line read from the file
+        :param separator: literal at which the text string needs to be split
+        :param split_dir_from_left : true is a normal split from left else false for right split
+        :return: list of words
+        """
+        if split_dir_from_left:
+            list_words = text.split(separator)
+        else:
+            list_words = text.rsplit(separator)
+        logging.info(f"line parsed into {list_words}")
+        return list_words
+
+    def _get_priority_of_level_by_tag(self, level_tag):
+        """
+        checks all the tags containers for the specified tag and looks up the priority from prio table
+        :param level_tag: string tag
+        :return: priority in Int
+        """
+        logging.info(f"priority of tag {level_tag} requested")
+        for keys in self.tags_level.keys():
+            if self.tags_level[keys] == level_tag:
+                return self.level_prio[keys]
+        else:
+            for keys in self.tags_content.keys():
+                if self.tags_content[keys] == level_tag:
+                    return self.level_prio[keys]
+        raise ElementDoesNotExist(f"level tag {level_tag} does not exist in priority table")
 
     def _create_xml_file(self, path_xml_file, name_xml_file=None):
         """
@@ -172,92 +213,60 @@ class TextParser:
             print("check whether the path is available first")
             logging.critical(f"file {filename} not able to be created at {path}")
 
-    def _create_root(self, root_tag):
-        """
-        creates the root element for the xml file
-        :param root_tag: string
-        :return: xml element
-        """
-        element = ET.Element(root_tag)
-        logging.info(f"root element with tag {root_tag} has been created")
-        return element
-
-    def _create_element_tree(self, root_element):
-        """
-        creates tree with the root element specified.
-        :param root_element: root as ET.element object
-        :return: tree
-        """
-        tree = ET.ElementTree(root_element)
-        logging.info(f"tree has been created with {root_element} as root")
-        return tree
-
-    def _create_element(self, super_element, element_tag, content, *args, **kwargs):
-        """
-        creates a subelement for the given super element with the content.
-        Attributes should be provided via kwargs
-        :param super_element: elementTree.element object
-        :param element_tag: string literal, name of the tag
-        :param content: content to be added to tag
-        :param kwargs: attributes should be added from the self.attributes item
-        :return: element
-        """
-        if len(args[0].items()) == 0:
-            element = ET.SubElement(super_element, element_tag)
-        else:
-            element = ET.SubElement(super_element, element_tag, args[0])
-        element.text = content
-
-        return element
-
-    def parse_text(self, text="", seperator=' '):
-        """
-        seperate the input text and return a list of words
-        :param text: line read from the file
-        :param seperator: literal at which the text string needs to be split
-        :return: list of words
-        """
-        list_words = text.split(seperator)
-        logging.info(f"line parsed into {list_words}")
-        return list_words
-
-    '''
-    def _find_element(self, level_tag, topic_name, root_element):
-        """
-        searches the tree for the subelement with the specified topic name under root_element
-        :param topic_name: topic as string
-        :param root_element: element object
-        :return: element object
-        """
-        for ele in root_element.findall(level_tag):
-            for key in ele.attrib:
-                if ele.attrib[key] == topic_name:
-                    return ele
-    '''
-
-    def _get_priority_of_level_by_tag(self, level_tag):
-        logging.info(f"priority of tag {level_tag} requested")
-        for keys in self.tags_level.keys():
-            if self.tags_level[keys] == level_tag:
-                return self.level_prio[keys]
-        else:
-            for keys in self.tags_content.keys():
-                if self.tags_content[keys] == level_tag:
-                    return self.level_prio[keys]
-        raise ElementDoesNotExist(f"level tag {level_tag} does not exist in priority table")
-
     def _get_level_of_tag(self, tag):
         for key in self.tags_level.keys():
             if tag == self.tags_level[key]:
                 return key
         raise ElementDoesNotExist(f"level of the tag {tag} does not exist in table")
 
+    def _get_super_element_for_element(self, element_level):
+        """
+        compares the contents of the element stack contents and the passed element
+        returns a suitable super element to which element can be appended
+        As standard 0 should have highest priority.
+        :param element_level: element level as string. should be retrieved from self.tags_level
+        :return:
+        """
+        element_under_test = self.__element_stack.pop()
+
+        '''
+        If the popped alement is the root, then it shall be returned as it is,
+        as root has the highest level of element
+        '''
+        if element_under_test is self.root_element:
+            logging.info(f"element {element_under_test.tag} is the root")
+            return element_under_test
+        '''
+        the priorities of the calling tag and the retrieved tags shall be checked
+        '''
+        element_under_test_priority = self._get_priority_of_level_by_tag(element_under_test.tag)
+        element_level_priority = self._get_priority_of_level_by_tag(element_level)
+        logging.info(
+            f"{element_level}'s super element needs to be found | \
+            {element_under_test.tag} with prio:{element_under_test_priority} is the current potential super element")
+        '''
+        if retrieved element has a higher priority, the same shall be returned.
+        Check shall be done to confirm if the returned tag is immediate super tag and warning shall be 
+            logged in, if found contrary
+        if popped tag has lower priority then the function shall be called recursively
+            until suitable tag / root is retrieved from stack
+        '''
+        if element_under_test_priority < element_level_priority:
+            logging.info(f"{element_under_test.tag} has higher priority than {element_level}")
+            if element_level_priority - element_under_test_priority > 1:
+                logging.warning(f"the element from the stack is of much higher level than the element to be pushed.")
+            logging.info(f"{element_under_test.tag} is returned from stack for process")
+            return element_under_test
+
+        else:
+            logging.info(f"stack needs to be poped further")
+            return self._get_super_element_for_element(element_level)
+
     def __sanity_check(self):
         """
         called before the initiation of parsing process to check if necessary parameters have been added
         :return:
         """
-
         logging.debug(f"{self.tags_level}")
         logging.debug(f"{self.tags_content}")
         logging.debug(f"{self.level_prio}")
@@ -281,112 +290,66 @@ class TextParser:
         self.__element_stack.append(subelement)
         logging.info(f"{element.tag} and {subelement.tag} pushed to the stack")
 
-    def _get_super_element_for_elment(self, element_level):
-        """
-        compares the contents of the element stack contents and the passed element
-        returns a suitable super element to which element can be appended
-        :param element_level: element level as string. should be retrieved from self.tags_level
-        :return:
-        """
-        element_under_test = self.__element_stack.pop()
-
-        if element_under_test is self.root_element:
-            logging.info(f"element {element_under_test.tag} is the root")
-            return element_under_test
-
-        element_under_test_priority = self._get_priority_of_level_by_tag(element_under_test.tag)
-        element_level_priority = self._get_priority_of_level_by_tag(element_level)
-        logging.info(
-            f"{element_level}'s super element needs to be found | {element_under_test.tag} with prio:{element_under_test_priority} is the current potential super element")
-
-        if element_under_test_priority < element_level_priority:
-            logging.info(f"{element_under_test.tag} has higher priority than {element_level}")
-            if element_level_priority - element_under_test_priority > 1:
-                logging.warning(f"the element from the stack is of much higher level than the element to be pushed.")
-            logging.info(f"{element_under_test.tag} is returned from stack for process")
-            return element_under_test
-        else:
-            logging.info(f"stack needs to be poped further")
-            return self._get_super_element_for_elment(element_level)
-
     def subelement_creation_strategy(self, level, content, *args, **kwargs):
         """
-        the extending class may override this functio to redife the strategy
-        :param level:
-        :param content:
-        :param args:
+        the extending class must override this function to redefine the strategy as per need
+        implements strategy to interpret lines read from the file
+        :param level: the level of the read content. Not the level identifier but the tag
+        :param content: The text that should be associated with the tag
+        :param args: if there is any attribute list available. Contents should be strictly string
         :param kwargs:
         :return:
         """
-        element = self._get_super_element_for_elment(self.tags_level[level])
+        element = self._get_super_element_for_element(self.tags_level[level])
         logging.info(f"super element aquired for processing")
         subelement = self._create_element(element, self.tags_level[level], content, args[0])
         logging.info(f"sub element created")
         self._push_to_the_stack(element, subelement)
         return subelement
 
+    def interpret(self, text):
+        """
+        must be implemented before usage. raise UnimplementedFunctionError.
+        to break the text, dev can use split_text() function
+        :param text:
+        :return: (super_tag, tag, content, **kwargs), kwargs should specify the attributes for the tag
+        """
+        raise UnimplementedFunctionError("implement the function first")
+
     def parse(self):
         """
-        This functiona shall parse the contents of the specified file
+        This function shall parse the contents of the specified file
         Before calling this function, all necessary tags, priority and attributes need to be set
         :return:
         """
-        logging.info("*" * 40)
-        logging.info("sanity check begins")
-        logging.info("*" * 40)
+        sLog("sanity check begins")
         self.__sanity_check()
-        logging.info("*" * 40)
-        logging.info("sanity check ends")
-        logging.info("*" * 40)
+        sLog("sanity check ends")
 
         self.root_element = self._create_root("root")
         self.__element_stack.append(self.root_element)
 
-        logging.info("*" * 40)
-        logging.info(f"root element created and added to the stack")
-        logging.info("*" * 40)
+        sLog("root element created and added to the stack")
 
         self.file_for_parsing.readline()
         count = 0
         for text in self.file_for_parsing:
-            logging.info("*" * 40)
-            logging.info(f"iteration count {count + 1}")
-            logging.info("*" * 40)
             count += 1
-
             text = str(text).strip("\n")
-            print("#" * 40, text)
-            "break the line and find out the level, get corresponding tag, content and attribute dictionary"
-            logging.debug(f"{text} has been returned from iterator")
-
-            topic_level, content, attrib_dict = self.find_type(text)
-
-            logging.info(f"passing subelement_creation_strategy({topic_level}, {content}, {attrib_dict})")
+            sLog(f"iteration count {count + 1} | parsing text : {text}")
+            topic_level, content, attrib_dict = self.interpret(text)
+            logging.info(f"calling subelement_creation_strategy({topic_level}, {content}, {attrib_dict})")
             self.subelement_creation_strategy(topic_level, content, attrib_dict)
-
-
 
         tree = self._create_element_tree(self.root_element)
         logging.info(f"tree created")
         tree.write("../raw_resources/xml.xml")
-        logging.info(f"tree pushed into file")
+        sLog("tree pushed into file")
 
         del self.root_element
 
 
-
-
-class UnimplementedFunctionError(Exception):
-    pass
-
-
-class FileNotAdded(Exception):
-    pass
-
-
-class ParserTagsNotConfigured(Exception):
-    pass
-
-
-class ElementDoesNotExist(Exception):
-    pass
+def sLog(text):
+    logging.info("*" * 40)
+    logging.info(text)
+    logging.info("*" * 40)

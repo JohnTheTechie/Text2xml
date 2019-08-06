@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f209d610-332b-4c1f-86e7-afe905bb2150" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/errors.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raw_resources/xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/raw_resources/xml.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_derivative.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_derivative.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/textFileParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/textFileParser.py" afterDir="false" />
     </list>
@@ -16,12 +18,12 @@
     <window id="1">
       <content type="file-editors">
         <state>
-          <leaf>
+          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/logs/logs.txt">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="329">
-                    <caret line="123" column="60" lean-forward="true" selection-start-line="123" selection-start-column="60" selection-end-line="123" selection-end-column="60" />
+                  <state relative-caret-position="669">
+                    <caret line="113" column="41" lean-forward="true" selection-start-line="113" selection-start-column="41" selection-end-line="113" selection-end-column="41" />
                   </state>
                 </provider>
               </entry>
@@ -36,8 +38,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/textFileParser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="370" selection-start-line="370" selection-end-line="370" />
+            <state relative-caret-position="-859">
+              <caret line="258" selection-start-line="258" selection-end-line="258" />
               <folding>
                 <element signature="e#1#15#0" expanded="true" />
               </folding>
@@ -45,11 +47,20 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/errors.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="93" selection-start-line="26" selection-start-column="93" selection-end-line="26" selection-end-column="93" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/test_derivative.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="48" column="82" selection-start-line="48" selection-start-column="82" selection-end-line="48" selection-end-column="82" />
+            <state relative-caret-position="2363">
+              <caret line="139" column="11" lean-forward="true" selection-start-line="139" selection-start-column="11" selection-end-line="139" selection-end-column="11" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -58,27 +69,9 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Anaconda3/Lib/xml/etree/ElementTree.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="751">
-              <caret line="775" selection-start-line="775" selection-end-line="775" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/raw_resources/xml.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="6" selection-start-column="6" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/raw_resources/kural_text.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
+            <state relative-caret-position="697">
               <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
             </state>
           </provider>
@@ -106,6 +99,7 @@
       <find>encode</find>
       <find>has been returned from iterator</find>
       <find>has been split into stack as</find>
+      <find>self.kural_index</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -118,9 +112,10 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/parser.py" />
         <option value="$PROJECT_DIR$/raw_resources/xml.xml" />
-        <option value="$PROJECT_DIR$/textFileParser.py" />
         <option value="$PROJECT_DIR$/raw_resources/kural_text.txt" />
         <option value="$PROJECT_DIR$/tests/test_derivative.py" />
+        <option value="$PROJECT_DIR$/errors.py" />
+        <option value="$PROJECT_DIR$/textFileParser.py" />
       </list>
     </option>
   </component>
@@ -137,7 +132,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -159,6 +153,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -267,7 +262,21 @@
       <option name="project" value="LOCAL" />
       <updated>1564929701046</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="working condition. bug fixing phase">
+      <created>1564936529205</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1564936529205</updated>
+    </task>
+    <task id="LOCAL-00006" summary="working condition. bug fixing phase">
+      <created>1564936610734</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1564936610734</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -277,7 +286,6 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11011591" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" sideWeight="0.49947312" weight="0.32936078" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
       <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49947312" visible="true" weight="0.32936078" />
@@ -289,6 +297,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50052685" side_tool="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49947312" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -320,33 +329,16 @@
     <MESSAGE value="improvement added" />
     <MESSAGE value="final touch to base class" />
     <MESSAGE value="testing phase" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing phase" />
+    <MESSAGE value="working condition. bug fixing phase" />
+    <option name="LAST_COMMIT_MESSAGE" value="working condition. bug fixing phase" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/raw_resources/kural_text">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="44" lean-forward="true" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/running_log.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/running_log.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/raw_resources/kural_text" />
+    <entry file="file://$PROJECT_DIR$/logs/running_log.log" />
+    <entry file="file://$PROJECT_DIR$/logs/running_log.txt" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -385,10 +377,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/raw_resources/kural_tex_1t.txt">
+    <entry file="file://$PROJECT_DIR$/raw_resources/kural_tex_1t.txt" />
+    <entry file="file://$PROJECT_DIR$/raw_resources/kural_text.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="15" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+        <state relative-caret-position="697">
+          <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/logs.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="669">
+          <caret line="113" column="41" lean-forward="true" selection-start-line="113" selection-start-column="41" selection-end-line="113" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/Lib/xml/etree/ElementTree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2842">
+          <caret line="937" selection-start-line="937" selection-end-line="937" />
         </state>
       </provider>
     </entry>
@@ -399,41 +406,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/raw_resources/kural_text.txt">
+    <entry file="file://$PROJECT_DIR$/errors.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+        <state relative-caret-position="442">
+          <caret line="26" column="93" selection-start-line="26" selection-start-column="93" selection-end-line="26" selection-end-column="93" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/textFileParser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="370" selection-start-line="370" selection-end-line="370" />
+        <state relative-caret-position="-859">
+          <caret line="258" selection-start-line="258" selection-end-line="258" />
           <folding>
             <element signature="e#1#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Anaconda3/Lib/xml/etree/ElementTree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="751">
-          <caret line="775" selection-start-line="775" selection-end-line="775" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/logs.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="123" column="60" lean-forward="true" selection-start-line="123" selection-start-column="60" selection-end-line="123" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_derivative.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="48" column="82" selection-start-line="48" selection-start-column="82" selection-end-line="48" selection-end-column="82" />
+        <state relative-caret-position="2363">
+          <caret line="139" column="11" lean-forward="true" selection-start-line="139" selection-start-column="11" selection-end-line="139" selection-end-column="11" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>

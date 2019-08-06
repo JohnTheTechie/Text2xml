@@ -13,7 +13,7 @@ class KuralParser(textFileParser.TextParser):
         self.index = 0
         self.kural_index = 0
         self.set_tag_for_level(level_1="Pal", level_2="Iyal", level_3="Athigaram", level_4="Kural")
-        self.set_prio_for_level(level_1=0, level_2=1, level_3=2, level_4=3, adi_1=4, adi_2=4)
+        self.set_priority_for_level(level_1=0, level_2=1, level_3=2, level_4=3, adi_1=4, adi_2=4)
         self.set_tag_for_content(adi_1="Mudhaladi", adi_2="Eetradi")
         self.set_attributes_for_tag("level_1", "name", "index")
         self.set_attributes_for_tag("level_2", "name", "index")
@@ -22,44 +22,61 @@ class KuralParser(textFileParser.TextParser):
 
     def subelement_creation_strategy(self, level, content, *args, **kwargs):
         """
-
-        :param level:
-        :param content:
-        :param args:
+        implements strategy to interpret lines read from the file
+        :param level: the level of the read content. Not the level identifier but the tag
+        :param content: The text that should be associated with the tag
+        :param args: if there is any attribute list available. Contents should be strictly string
         :param kwargs:
         :return:
         """
-        logging.debug(f"args received {args[0]}")
+        logging.debug(f"subelement_creation_strategy(self, level, content, *args, **kwargs) | \
+            args received {self, level, content, args, kwargs}")
         if level == "empty string":
+            '''
+            if an empty string has been read from the file, 
+            the strategy shall simply skip the interpretation
+            '''
             print("empty line")
+
         elif level == "adi_1":
-            element = self._get_super_element_for_elment(self.tags_level["level_4"])
+            '''
+            when adi_1 is received, a new kural tag is created and pushed. 
+            Then same kural shall be retrived and the adi shall be pushed
+            '''
+            element = self._get_super_element_for_element(self.tags_level["level_4"])
             logging.info(f"super element acquired for processing")
-            subelement = self._create_element(element, self.tags_level["level_4"], None, {})
+            subelement = self._create_element(element, self.tags_level["level_4"], content, args[0])
             logging.info(f"Kural element created with attributes {args[0]}")
             self._push_to_the_stack(element, subelement)
 
-            element = self._get_super_element_for_elment(self.tags_content[level])
+            element = self._get_super_element_for_element(self.tags_content[level])
             logging.info(f"super element acquired for processing")
             subelement = self._create_element(element, self.tags_content[level], content, {})
             logging.info(f"Mudhaladi element created")
             self._push_to_the_stack(element, subelement)
 
         elif level == "adi_2":
-            element = self._get_super_element_for_elment(self.tags_content[level])
+            '''
+            When second adi is is received, super element is retrieved and adi 2 is added
+            Since the Kural element has been completed with the second meter,
+            the elements shall not be pushed into the stack
+            '''
+            element = self._get_super_element_for_element(self.tags_content[level])
             logging.info(f"super element acquired for processing")
-            subelement = self._create_element(element, self.tags_content[level], content, {})
+            self._create_element(element, self.tags_content[level], content, {})
             logging.info(f"Eetradi element created")
 
         else:
-            element = self._get_super_element_for_elment(self.tags_level[level])
+            '''
+            other type of tags are all just headers hence shall be treated the same way.
+            Super element shall be retrieved and subelement created and pushed to the stack'''
+            element = self._get_super_element_for_element(self.tags_level[level])
             logging.info(f"super element aquired for processing")
             subelement = self._create_element(element, self.tags_level[level], content, args[0])
             logging.info(f"sub element created")
             self._push_to_the_stack(element, subelement)
-            return subelement
 
-    def find_type(self, text=""):
+    def interpret(self, text=""):
 
         self.index += 1
         logging.debug(f"line index {self.index} : {text} being parsed")
@@ -110,7 +127,7 @@ class KuralParser(textFileParser.TextParser):
                 content = text
                 logging.info(f"first line of poem {text}")
                 self.kural_index += 1
-            level_attributes["index"] = self.kural_index
+                level_attributes["index"] = str(self.kural_index)
         logging.info(
             f"info type returns level_type:{level_type}, content:{content}, level_attributes:{level_attributes}")
         return level_type, content, level_attributes

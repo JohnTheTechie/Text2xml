@@ -2,37 +2,37 @@
     <Pal index="1" name="pal">
         <Iyal index="1" name="iyal">
             <Athigaram index="1" name="athi">
-                <Kural>
+                <Kural index="1">absdef abcdef abcdef
                     <Mudhaladi>absdef abcdef abcdef</Mudhaladi>
                     <Eetradi>qwerty qwerty</Eetradi>
                 </Kural>
-                <Kural>
+                <Kural index="2">absdef abcdef abcdef
                     <Mudhaladi>absdef abcdef abcdef</Mudhaladi>
                     <Eetradi>qwerty qwerty</Eetradi>
                 </Kural>
-                <Kural>
+                <Kural index="3">absdef abcdef abcdef
                     <Mudhaladi>absdef abcdef abcdef</Mudhaladi>
                     <Eetradi>qwerty qwerty</Eetradi>
                 </Kural>
-                <Kural>
+                <Kural index="4">absdef abcdef abcdef
                     <Mudhaladi>absdef abcdef abcdef</Mudhaladi>
                     <Eetradi>qwerty qwerty</Eetradi>
                 </Kural>
-                <Kural>
+                <Kural index="5">absdef abcdef abcdef
                     <Mudhaladi>absdef abcdef abcdef</Mudhaladi>
                     <Eetradi>qwerty qwerty</Eetradi>
                 </Kural>
             </Athigaram>
             <Athigaram index="2" name="athi2">
-                <Kural>
+                <Kural index="6">absdef abcdef abcdef
                     <Mudhaladi>absdef abcdef abcdef</Mudhaladi>
                     <Eetradi>qwerty qwerty</Eetradi>
                 </Kural>
-                <Kural>
+                <Kural index="7">absdef abcdef abcdef
                     <Mudhaladi>absdef abcdef abcdef</Mudhaladi>
                     <Eetradi>qwerty qwerty</Eetradi>
                 </Kural>
-                <Kural>
+                <Kural index="8">absdef abcdef abcdef
                     <Mudhaladi>absdef abcdef abcdef</Mudhaladi>
                     <Eetradi>qwerty qwerty</Eetradi>
                 </Kural>
@@ -40,15 +40,15 @@
         </Iyal>
         <Iyal index="2" name="iyal2">
             <Athigaram index="1" name="athi3">
-                <Kural>
+                <Kural index="9">absdef abcdef abcdef
                     <Mudhaladi>absdef abcdef abcdef</Mudhaladi>
                     <Eetradi>qwerty qwerty</Eetradi>
                 </Kural>
-                <Kural>
+                <Kural index="10">absdef abcdef abcdef
                     <Mudhaladi>absdef abcdef abcdef</Mudhaladi>
                     <Eetradi>qwerty qwerty</Eetradi>
                 </Kural>
-                <Kural>
+                <Kural index="11">absdef abcdef abcdef
                     <Mudhaladi>absdef abcdef abcdef</Mudhaladi>
                     <Eetradi>qwerty qwerty</Eetradi>
                 </Kural>
@@ -58,15 +58,15 @@
     <Pal index="2" name="pal2">
         <Iyal index="1" name="iayal3">
             <Athigaram index="1" name="athi4">
-                <Kural>
+                <Kural index="12">absdef abcdef abcdef
                     <Mudhaladi>absdef abcdef abcdef</Mudhaladi>
                     <Eetradi>qwerty qwerty</Eetradi>
                 </Kural>
-                <Kural>
+                <Kural index="13">absdef abcdef abcdef
                     <Mudhaladi>absdef abcdef abcdef</Mudhaladi>
                     <Eetradi>qwerty qwerty</Eetradi>
                 </Kural>
-                <Kural>
+                <Kural index="14">absdef abcdef abcdef
                     <Mudhaladi>absdef abcdef abcdef</Mudhaladi>
                     <Eetradi>qwerty qwerty</Eetradi>
                 </Kural>
