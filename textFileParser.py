@@ -355,7 +355,7 @@ class TextParser:
 
         tree = self._create_element_tree(self.root_element)
         logging.info(f"tree created")
-        tree.write("../raw_resources/xml.xml")
+        tree.write(self.destination_file)
         sLog("tree pushed into file")
 
         del self.root_element
