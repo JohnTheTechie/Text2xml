@@ -29,6 +29,7 @@ class TextParser:
         self.__element_stack = []
         self.root_element = None
         self.file_for_parsing = self._get_file_to_parse(file_path)
+        self.destination_file = None
 
     def set_priority_for_level(self, level=None, priority=None, **kwargs):
         """
@@ -99,6 +100,17 @@ class TextParser:
         """
         self.attributes[tag] = args
         logging.info(f"attributes {args} have been set for the tag {tag}")
+
+    def set_destination_file(self, path="./", name="result.xml"):
+        """
+        set the name and the location of the end product
+        :param path: location path for the product file
+        :param name: dest file name
+        :return: absolute path of the destination file
+        """
+        destination_location = fpath.join(path, name)
+        self.destination_file = fpath.abspath(destination_location)
+        return self.destination_file
 
     def _get_file_to_parse(self, file_path):
         """

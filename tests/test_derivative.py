@@ -12,13 +12,6 @@ class KuralParser(textFileParser.TextParser):
         super().__init__(file_path)
         self.index = 0
         self.kural_index = 0
-        self.set_tag_for_level(level_1="Pal", level_2="Iyal", level_3="Athigaram", level_4="Kural")
-        self.set_priority_for_level(level_1=0, level_2=1, level_3=2, level_4=3, adi_1=4, adi_2=4)
-        self.set_tag_for_content(adi_1="Mudhaladi", adi_2="Eetradi")
-        self.set_attributes_for_tag("level_1", "name", "index")
-        self.set_attributes_for_tag("level_2", "name", "index")
-        self.set_attributes_for_tag("level_3", "name", "index")
-        self.set_attributes_for_tag("level_4", "index")
 
     def subelement_creation_strategy(self, level, content, *args, **kwargs):
         """
@@ -133,8 +126,17 @@ class KuralParser(textFileParser.TextParser):
         return level_type, content, level_attributes
 
 
-obj = KuralParser("../raw_resources/kural_text.txt")
-logging.info("#" * 40)
-logging.info("#" * 40)
-logging.info("#" * 40)
-obj.parse()
+if __name__ == "__main__":
+    obj = KuralParser("../raw_resources/kural_text.txt")
+    obj.set_tag_for_level(level_1="Pal", level_2="Iyal", level_3="Athigaram", level_4="Kural")
+    obj.set_priority_for_level(level_1=0, level_2=1, level_3=2, level_4=3, adi_1=4, adi_2=4)
+    obj.set_tag_for_content(adi_1="Mudhaladi", adi_2="Eetradi")
+    obj.set_attributes_for_tag("level_1", "name", "index")
+    obj.set_attributes_for_tag("level_2", "name", "index")
+    obj.set_attributes_for_tag("level_3", "name", "index")
+    obj.set_attributes_for_tag("level_4", "index")
+    logging.info("#" * 40)
+    logging.info("#" * 40)
+    logging.info("#" * 40)
+    obj.parse()
+    print("completed")
